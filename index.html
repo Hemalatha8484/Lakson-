@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LAKSON unified banking products dashboard demo." />
+  <title>LAKSON | Banking Products</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="LAKSON home">
+        <span class="brand-mark">L</span><span>LAKSON</span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-item" href="#"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-item active" href="#"><span class="nav-icon">▣</span> Banking products</a>
+        <a class="nav-item" href="#"><span class="nav-icon">↗</span> Transactions</a>
+        <a class="nav-item" href="#"><span class="nav-icon">◷</span> Payments</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <strong>Need a hand?</strong>
+          <p>Our support team is here to help.</p>
+          <a href="mailto:support@example.com">Contact support <span>→</span></a>
+        </div>
+        <div class="profile">
+          <div class="avatar">HN</div>
+          <div><strong>Hemalatha N</strong><small>Personal account</small></div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Banking products</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" aria-label="Notifications">♧<i></i></button>
+          <div class="top-avatar">HN</div>
+        </div>
+      </header>
+
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow">YOUR FINANCIAL OVERVIEW</p>
+          <h1>Banking products</h1>
+          <p class="subtitle">Manage and explore all your financial products in one place.</p>
+        </div>
+        <button class="primary-button" id="exploreButton"><span>＋</span> Explore products</button>
+      </section>
+
+      <section class="summary-grid" aria-label="Product summary">
+        <article class="summary-card">
+          <div class="summary-top"><span>Total products</span><span class="summary-icon blue">▣</span></div>
+          <div class="summary-number" id="totalCount">04</div>
+          <div class="summary-foot"><span class="dot blue-dot"></span> Across all categories</div>
+        </article>
+        <article class="summary-card">
+          <div class="summary-top"><span>Active products</span><span class="summary-icon green">✓</span></div>
+          <div class="summary-number" id="activeCount">03</div>
+          <div class="summary-foot"><span class="dot green-dot"></span> Ready to use</div>
+        </article>
+        <article class="summary-card">
+          <div class="summary-top"><span>Pending actions</span><span class="summary-icon amber">◷</span></div>
+          <div class="summary-number" id="pendingCount">01</div>
+          <div class="summary-foot"><span class="dot amber-dot"></span> Needs your attention</div>
+        </article>
+      </section>
+
+      <section class="products-section">
+        <div class="section-heading">
+          <div><h2>Your products</h2><p>All your accounts, cards and lending products.</p></div>
+          <span class="updated-label"><span class="live-dot"></span> Demo data</span>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products" />
+            <kbd>⌘ K</kbd>
+          </label>
+          <label class="select-wrap">
+            <span class="sr-only">Filter by status</span>
+            <select id="statusFilter">
+              <option value="all">All statuses</option>
+              <option value="Active">Active</option>
+              <option value="Pending">Pending</option>
+              <option value="Blocked">Blocked</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="category-tabs" role="tablist" aria-label="Filter by category">
+          <button class="category-tab active" data-category="All" role="tab" aria-selected="true">All products <span id="allTabCount">4</span></button>
+          <button class="category-tab" data-category="Savings" role="tab" aria-selected="false">Savings</button>
+          <button class="category-tab" data-category="Cards" role="tab" aria-selected="false">Cards</button>
+          <button class="category-tab" data-category="Loans" role="tab" aria-selected="false">Loans</button>
+          <button class="category-tab" data-category="Wealth" role="tab" aria-selected="false">Wealth</button>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-icon">⌕</div><h3>No products found</h3>
+          <p>Try another search term or change your filters.</p>
+          <button class="text-button" id="resetFilters">Clear filters</button>
+        </div>
+      </section>
+
+      <footer class="footer"><span>© 2026 LAKSON Financial. Demo interface for assessment use.</span><span>Privacy&nbsp;&nbsp; · &nbsp;&nbsp;Terms&nbsp;&nbsp; · &nbsp;&nbsp;Help</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close dialog">×</button>
+      <div class="modal-symbol" id="modalSymbol">▣</div>
+      <p class="eyebrow">PRODUCT DETAILS</p>
+      <h2 id="modalTitle">Product name</h2>
+      <p class="modal-description" id="modalDescription"></p>
+      <div class="modal-details" id="modalDetails"></div>
+      <div class="modal-actions">
+        <button class="secondary-button" id="modalDone">Close</button>
+        <button class="primary-button" id="modalAction">Continue</button>
+      </div>
+      <p class="demo-note" id="demoNote">Demo only — no real banking action will be performed.</p>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
